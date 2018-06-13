@@ -1,7 +1,7 @@
 'use strict'
 
 var Token = function(address) {
-  this.description = "";
+  this.payto = Blockchain.transaction.from;
   this.address = address;
 }
 
