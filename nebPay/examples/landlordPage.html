@@ -67,9 +67,10 @@
         }
         function onCallClickREG() {
             var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin";
-            var value = document.getElementById("callValue").value;
-            var callFunction = document.getElementById("callFunction").value;
-            var callArgs = document.getElementById("callArgs").value;
+            var value = "0";
+            var callFunction = "register";
+            var argumentGiven = "[\"" + document.getElementById("callArgs").value + "\"]"
+            var callArgs = argumentGiven;
             serialNumber = nebPay.call(to, value, callFunction, callArgs, {
                 qrcode: {
                     showQRCode: true
@@ -86,9 +87,9 @@
             }, 1000);
         }
         function onCallClickTOKENS() {
-            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin";
+            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin"; // landlord contract address
             var value = document.getElementById("callValue").value;
-            var callFunction = document.getElementById("callFunction").value;
+            var callFunction = "tokens";
             var callArgs = document.getElementById("callArgs").value;
             serialNumber = nebPay.call(to, value, callFunction, callArgs, {
                 qrcode: {
@@ -107,10 +108,10 @@
         }
 
         function onSimulateCallClick() {
-            var to = document.getElementById("simulateCallTo").value;
-            var value = document.getElementById("simulateCallValue").value;
-            var callFunction = document.getElementById("simulateCallFunction").value;
-            var callArgs = document.getElementById("simulateCallArgs").value;
+            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin";
+            var value = "0";
+            var callFunction = "tokens";
+            var callArgs = "";
             nebPay.simulateCall(to, value, callFunction, callArgs, {
                 qrcode: {
                     showQRCode: true
@@ -158,52 +159,24 @@
 <h1>Landlord NAS</h1>
 
 <div>
-    <label>Please select MainNet TeseNet to query tx result:</label>
+    <label>Welcome to LandlordNAS, where you can register a Nebulas address to a physical address, allowing your tennants to pay you!</label>
     <br>
-    <label><input onclick="selectMainnet();" type="radio" value="mainnetUrl" name="network">MainNet</label>
-    <label><input onclick="selectTestnet();" type="radio" value="testnetUrl" name="network">TestNet</label>
-    <p >Note: You need to switch the network of wallet <a target="_blank" href="https://blog.nebulas.io/2018/05/10/announcement-of-official-app/">App</a> or <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">extension</a> accordingly.</p>
 </div>
 <h5></h5>
-
 <div>
-    <div>Normal Payment of NAS (pay your rent)</div>
-
-    <div style="display: inline-block">
-        <div>to:</div>
-        <input type="text" id="to" placeholder="to address"/>
-    </div>
-
-    <div style="display: inline-block">
-        <div>value:</div>
-        <input type="text" id="value" placeholder="value"/>
-    </div>
-    <button type="button" onClick="onPayClick();">pay</button>
-</div>
-<h5></h5>
-
-
-<div>
-    <div>Register as a Landlord</div>
+    <div><h4>Register as a Landlord</h4></div>
+    <div>Please enter the physical address you would like to Register <b>IN THE PROPER FORMAT SHOWN IN PLACEHOLDER!</b>. <br>Whatever address you pay with will become your registered NAS address:</div>
     <h5></h5>
     <div style="display: inline-block">
-        <div>value:</div>
-        <input type="text" id="callValue" placeholder="value"/>
+        <div>Physical Address to Register:</div>
+        <input type="text" id="callArgs" placeholder="Ex: [&quot;123 Fake St&quot;]"/>
     </div>
-    <div style="display: inline-block">
-        <div>function:</div>
-        <input type="text" id="callFunction" placeholder="function name"/>
-    </div>
-    <div style="display: inline-block">
-        <div>args:</div>
-        <input type="text" id="callArgs" placeholder="call args"/>
-    </div>
-    <button type="button" onClick="onCallClickREG();">pay</button>
+    <button type="button" onClick="onCallClickREG();">Register physical address on LandlordNAS!!</button>
 </div>
 <h5></h5>
 
 
-<div>
+<!-- <div>
     <div>See Landlords Registered</div>
     <h5></h5>
 
@@ -226,19 +199,47 @@
         <input type="text" id="callArgs" placeholder="call args"/>
     </div>
     <button type="button" onClick="onCallClickTOKENS();">pay</button>
-</div>
+</div> -->
 <h5></h5>
 
-
 <div>
-    <div>Pay result queried from server with serialNumber,
-        you need to click the refresh button and check if the tx result is uploaded to server:</div>
+  <br>
+  <div><h4>See Landlords Registered</h4></div>
+
+    <div>Press to see current landlords addresses that have already registered:</div>
         <h5></h5>
-    <textarea id="result" readonly="readonly"></textarea>
-    <button type="button" onClick="onrefreshClick();">refresh</button>
+        <div>
+            <!-- <div>(only supported by extension)</div> -->
+
+            <!-- <div style="display: inline-block">
+                <div>to:</div>
+                <input type="text" id="simulateCallTo" placeholder="contract address"/>
+            </div> -->
+
+            <!-- <div style="display: inline-block">
+                <div>value:</div>
+                <input type="text" id="simulateCallValue" placeholder="value"/>
+            </div> -->
+            <!-- <div style="display: inline-block">
+                <div>function:</div>
+                <input type="text" id="simulateCallFunction" placeholder="tokens"/>
+            </div> -->
+            <!-- <div style="display: inline-block">
+                <div>args:</div>
+                <input type="text" id="simulateCallArgs" placeholder="call args"/>
+            </div> -->
+            <button type="button" onClick="onSimulateCallClick();">See list of Landlord NAS Addresses</button>
+        </div>
+        <h5></h5>
+    <!-- <textarea id="result" readonly="readonly"></textarea> -->
+    <!-- <button type="button" onClick="onrefreshClick();">refresh</button> -->
 
     <!-- <div>pay result listened directly from extension:</div>
     <textarea id="resultFromExtension" readonly="readonly"></textarea> -->
+    <div>Landlord Addresses registered with LandlordNAS:</div>
+    <textarea id="resultFromExtension" readonly="readonly"></textarea>
+</div>
+
 </div>
 
 </body>
