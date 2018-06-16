@@ -3,13 +3,13 @@
 <head>
   <script type="text/javascript" src="../dist/nebPay.js"></script>
     <script type="text/javascript">
-
+//&quot; " in HTML
         // console.log("this is require", require);
         var NebPay = require("nebpay");
         var nebPay = new NebPay();
         var serialNumber;
-        // var callbackUrl = NebPay.config.mainnetUrl;
-        var callbackUrl = NebPay.config.testnetUrl;
+        var callbackUrl = NebPay.config.mainnetUrl;
+        // var callbackUrl = NebPay.config.testnetUrl;
         function onPayClick() {
             var to = document.getElementById("to").value;
             var value = document.getElementById("value").value;
@@ -66,7 +66,7 @@
             }, 1000);
         }
         function onCallClickREG() {
-            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin";
+            var to = "n1yTdckEvu2GngUCvzWdj4fF8s8W9Eav4BZ";
             var value = "0";
             var callFunction = "register";
             var argumentGiven = "[\"" + document.getElementById("callArgs").value + "\"]"
@@ -87,7 +87,7 @@
             }, 1000);
         }
         function onCallClickTOKENS() {
-            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin"; // landlord contract address
+            var to = "n1yTdckEvu2GngUCvzWdj4fF8s8W9Eav4BZ"; // landlord contract address
             var value = document.getElementById("callValue").value;
             var callFunction = "tokens";
             var callArgs = document.getElementById("callArgs").value;
@@ -107,8 +107,9 @@
             }, 1000);
         }
 
+// shows any registered addresses
         function onSimulateCallClick() {
-            var to = "n1v1YGAcj9QLz9Bk88SWjmHfrMQHRHBKuin";
+            var to = "n1yTdckEvu2GngUCvzWdj4fF8s8W9Eav4BZ";
             var value = "0";
             var callFunction = "tokens";
             var callArgs = "";
@@ -165,12 +166,16 @@
 <h5></h5>
 <div>
     <div><h4>Register as a Landlord</h4></div>
-    <div>Please enter the physical address you would like to Register <b>IN THE PROPER FORMAT SHOWN IN PLACEHOLDER!</b>. <br>Whatever address you pay with will become your registered NAS address:</div>
+    <div>Please enter the physical address you would like to Register
+      <b>IN THE PROPER FORMAT SHOWN IN PLACEHOLDER!</b>.
+      <br>Whatever address you pay with will become your registered NAS address:
+    </div>
     <h5></h5>
     <div style="display: inline-block">
         <div>Physical Address to Register:</div>
-        <input type="text" id="callArgs" placeholder="Ex: [&quot;123 Fake St&quot;]"/>
+        <input type="text" id="callArgs" placeholder="Ex: 123 Fake St, SF, CA, USA"/>
     </div>
+
     <button type="button" onClick="onCallClickREG();">Register physical address on LandlordNAS!!</button>
 </div>
 <h5></h5>
